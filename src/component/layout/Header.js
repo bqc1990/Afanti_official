@@ -46,7 +46,7 @@ class Header extends Component {
                   placement="bottom"
                   overlay={popover}
                 >
-                  <a className="nav-link text-dark">
+                  <a className="nav-link text-dark" href>
                     <i
                       style={{ cursor: "pointer" }}
                       className="fas fa-shopping-cart fa-lg"
