@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addToCartAction } from "../redux/CartAction";
 
-export default class Product extends Component {
+class Product extends Component {
   render() {
     return (
       <div className="card m-1" style={{ maxWidth: "18rem" }}>
@@ -17,8 +19,14 @@ export default class Product extends Component {
             </span>
 
             <span>
-              <a href="/">
-                <i className="fas fa-shopping-cart fa-sm text-dark" />
+              <a
+                href="/"
+                onClick={() => this.props.addToCartAction(this.props.product)}
+              >
+                <i
+                  style={{ cursor: "pointer" }}
+                  className="fas fa-shopping-cart fa-sm text-dark"
+                />
               </a>
             </span>
           </div>
@@ -27,3 +35,12 @@ export default class Product extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => ({
+    cartItems: state.carts.cartItems,
+  }),
+  {
+    addToCartAction,
+  }
+)(Product);

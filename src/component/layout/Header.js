@@ -1,7 +1,23 @@
 import React, { Component } from "react";
+import { Popover, OverlayTrigger } from "react-bootstrap";
+import { connect } from "react-redux";
+import Carts from "../Carts";
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
+    const popover = (
+      <Popover id="popover-basic">
+        <Popover.Title as="h3">
+          {this.props.cartItems.length === 0
+            ? "Your cart is empty"
+            : `You have ${this.props.cartItems.length} item(s)`}
+        </Popover.Title>
+        <Popover.Content>
+          {<Carts cartItems={this.props.cartItems} />}
+          <button class="btn btn-success btn-block">Check out</button>
+        </Popover.Content>
+      </Popover>
+    );
     return (
       <header>
         <nav className="navbar navbar-light">
@@ -23,9 +39,21 @@ export default class Header extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-dark" href="/">
-                  <i className="fas fa-shopping-cart fa-lg"></i>
-                </a>
+                <OverlayTrigger
+                  trigger="click"
+                  placement="bottom"
+                  overlay={popover}
+                >
+                  <a className="nav-link text-dark">
+                    <i
+                      style={{ cursor: "pointer" }}
+                      className="fas fa-shopping-cart fa-lg"
+                    ></i>
+                    <span className="badge">
+                      {this.props.cartItems ? this.props.cartItems.length : 0}
+                    </span>
+                  </a>
+                </OverlayTrigger>
               </li>
             </ul>
           </div>
@@ -34,3 +62,8 @@ export default class Header extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => ({ cartItems: state.carts.cartItems }),
+  {}
+)(Header);
