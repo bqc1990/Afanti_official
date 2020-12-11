@@ -6,6 +6,10 @@ export const productReducer = (state = {}, action) => {
       return {
         data: action.payload.data,
       };
+    case TYPE.TYPE_ADD_TO_CART:
+      return {
+        cartItems: action.payload.items,
+      };
     default:
       return state;
   }
