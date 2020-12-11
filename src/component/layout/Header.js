@@ -14,7 +14,9 @@ class Header extends Component {
         </Popover.Title>
         <Popover.Content>
           {<Carts cartItems={this.props.cartItems} />}
-          <button class="btn btn-success btn-block">Check out</button>
+          <a class="btn btn-success btn-block" href="/checkout">
+            Continue
+          </a>
         </Popover.Content>
       </Popover>
     );
