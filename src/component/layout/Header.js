@@ -46,7 +46,7 @@ class Header extends Component {
                   placement="bottom"
                   overlay={popover}
                 >
-                  <a className="nav-link text-dark" href>
+                  <span className="nav-link text-dark">
                     <i
                       style={{ cursor: "pointer" }}
                       className="fas fa-shopping-cart fa-lg"
@@ -54,7 +54,7 @@ class Header extends Component {
                     <span className="badge">
                       {this.props.cartItems ? this.props.cartItems.length : 0}
                     </span>
-                  </a>
+                  </span>
                 </OverlayTrigger>
               </li>
             </ul>
