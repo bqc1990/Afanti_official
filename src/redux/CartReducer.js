@@ -11,6 +11,7 @@ export const cartReducer = (state = { cartItems: carItems || [] }, action) => {
       return {
         cartItems: action.payload.items,
       };
+
     default:
       return state;
   }

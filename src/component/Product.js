@@ -31,7 +31,10 @@ class Product extends Component {
   render() {
     return (
       <>
-        <div className="card m-1" style={{ maxWidth: "18rem" }}>
+        <div
+          className="card m-1"
+          style={{ maxWidth: "18rem", minWidth: "15rem" }}
+        >
           <img
             src={this.props.product.image}
             className="card-img-top"
@@ -89,7 +92,6 @@ class Product extends Component {
                           type="radio"
                           name="size"
                           value={size}
-                          checked={size === "S" ? true : false}
                           style={{ margin: "0.3rem" }}
                         />
                       </>

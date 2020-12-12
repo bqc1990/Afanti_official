@@ -10,9 +10,9 @@ class Products extends Component {
   render() {
     return (
       <div className="d-flex justify-content-center align-items-center ">
-        {this.props.products ? (
+        {this.props.filteredProducts ? (
           <div className="row row-cols-1 row-cols-md-4 m-3 justify-content-center">
-            {this.props.products.map((product) => (
+            {this.props.filteredProducts.map((product) => (
               <Product key={product._id} product={product} />
             ))}
           </div>
@@ -28,6 +28,7 @@ class Products extends Component {
 export default connect(
   (state) => ({
     products: state.products.data,
+    filteredProducts: state.products.filteredProducts,
   }),
   {
     fetchProductsAction,

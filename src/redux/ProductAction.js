@@ -10,3 +10,36 @@ export const fetchProductsAction = () => async (dispatch) => {
     },
   });
 };
+
+export const sortProductsAction = (filteredProducts, sort) => (dispatch) => {
+  let copy = filteredProducts.slice().sort((a, b) => a.eid - b.eid);
+  if (sort === "highest") {
+    copy = filteredProducts.slice().sort((a, b) => b.price - a.price);
+  } else if (sort === "lowest") {
+    copy = filteredProducts.slice().sort((a, b) => a.price - b.price);
+  }
+  dispatch({
+    type: TYPE.TYPE_SORT_PRODUCTS,
+    payload: {
+      sort: sort,
+      filteredProducts: copy,
+    },
+  });
+};
+
+export const sizeProductsAction = (size) => (dispatch, getState) => {
+  let copy = getState().products.data.slice();
+  if (size !== "All") {
+    copy = getState()
+      .products.data.slice()
+      .filter((product) => product.sizes.indexOf(size) >= 0);
+  }
+
+  dispatch({
+    type: TYPE.TYPE_SIZE_PRODUCTS,
+    payload: {
+      size: size,
+      filteredProducts: copy,
+    },
+  });
+};
