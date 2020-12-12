@@ -40,8 +40,8 @@ class Product extends Component {
             className="card-img-top"
             alt={this.props.product.title}
           />
-          <div class="card-body">
-            <h5 class="card-title">{this.props.product.title}</h5>
+          <div className="card-body">
+            <h5 className="card-title">{this.props.product.title}</h5>
             <div className="d-flex justify-content-between align-items-center">
               <span className="text-success">
                 $<strong>{this.props.product.price}</strong>
