@@ -33,7 +33,7 @@ class Cart extends Component {
 }
 export default connect(
   (state) => ({
-    cartItems: state.carts.cartItems,
+    cartItems: state.cart.cartItems,
   }),
   { removeFromCartAction }
 )(Cart);

@@ -1,13 +1,14 @@
-import { Provider } from "react-redux";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import store from "./redux/Store";
 import Home from "./component/page/Home";
 import SignIn from "./component/page/auth/Sign-in";
 import SignUp from "./component/page/auth/Sign-up";
+import { connect } from "react-redux";
+import { userTokenIsValidateAction } from "./redux/UserAction";
 
-function App() {
-  return (
-    <Provider store={store}>
+class App extends React.Component {
+  render() {
+    return (
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -15,8 +16,17 @@ function App() {
           <Route path="/sign-up" component={SignUp} />
         </Switch>
       </Router>
-    </Provider>
-  );
+    );
+  }
 }
 
-export default App;
+export default connect(
+  (state) => ({
+    userInfo: state.user.userInfo,
+    tokenIsValidate: state.user.tokenIsValidate,
+    err: state.user.err,
+  }),
+  {
+    userTokenIsValidateAction,
+  }
+)(App);

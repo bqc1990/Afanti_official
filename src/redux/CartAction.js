@@ -1,7 +1,7 @@
 import * as TYPE from "./Type";
 
 export const addToCartAction = (product) => (dispatch, getState) => {
-  let cartItems = getState().carts.cartItems.slice();
+  let cartItems = getState().cart.cartItems.slice();
   let alreadyInCar = false;
   cartItems.forEach((item) => {
     if (product._id === item._id) {
@@ -24,7 +24,7 @@ export const addToCartAction = (product) => (dispatch, getState) => {
 
 export const removeFromCartAction = (product) => (dispatch, getState) => {
   let cartItems = getState()
-    .carts.cartItems.slice()
+    .cart.cartItems.slice()
     .filter((item) => item._id !== product._id);
   console.log(cartItems);
   dispatch({

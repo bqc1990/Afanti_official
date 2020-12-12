@@ -96,7 +96,7 @@ router.post("/tokenIsValidate", async (req, res) => {
   res.json({
     msg: null,
     validate: true,
-    customer: {
+    user: {
       id: customer_found._id,
       name: customer_found.firstName + " " + customer_found.lastName,
     },
