@@ -15,9 +15,11 @@ class Header extends Component {
         </Popover.Title>
         <Popover.Content>
           {<Carts cartItems={this.props.cartItems} />}
-          <a class="dropdown-item text-success text-center" href="/checkout">
-            Continue
-          </a>
+          {this.props.cartItems.length === 0 ? null : (
+            <a class="dropdown-item text-success text-center" href="/checkout">
+              Continue
+            </a>
+          )}
         </Popover.Content>
       </Popover>
     );
@@ -81,7 +83,7 @@ class Header extends Component {
                       style={{ cursor: "pointer" }}
                       className="far fa-user-circle fa-lg"
                     ></i>{" "}
-                    User
+                    {this.props.userInfo ? this.props.userInfo.firstName : ""}
                   </span>
                 </OverlayTrigger>
               </li>
