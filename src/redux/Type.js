@@ -9,3 +9,4 @@ export const TYPE_USER_SIGN_IN = "user_sign_in";
 export const TYPE_USER_SIGN_UP = "user_sign_up";
 export const TYPE_USER_GET_INFO = "user_get_info";
 export const TYPE_USER_TOKEN_IS_VALIDATE = "user_token_is_validate";
+export const TYPE_USER_SIGN_OUT = "user_sign_out";

@@ -74,3 +74,14 @@ export const userTokenIsValidateAction = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const userSignOutAction = () => (dispatch) => {
+  dispatch({
+    type: TYPE.TYPE_USER_SIGN_OUT,
+    payload: {
+      validate: false,
+      userInfo: null,
+      token: "",
+    },
+  });
+};

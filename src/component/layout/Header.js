@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import { connect } from "react-redux";
 import Carts from "../Carts";
+import { userSignOutAction } from "../../redux/UserAction";
 
 class Header extends Component {
   render() {
@@ -30,9 +31,16 @@ class Header extends Component {
                 Account
               </a>
               <hr class="dropdown-divider" />
-              <a className="dropdown-item text-danger" href="/">
+              <span
+                style={{ cursor: "pointer" }}
+                className="dropdown-item text-danger"
+                onClick={() => {
+                  this.props.userSignOutAction();
+                  window.localStorage.setItem("auth-token", "");
+                }}
+              >
                 Log out
-              </a>
+              </span>
             </div>
           ) : (
             <div>
@@ -72,10 +80,8 @@ class Header extends Component {
                     <i
                       style={{ cursor: "pointer" }}
                       className="far fa-user-circle fa-lg"
-                    ></i>
-                    {this.props.userInfo
-                      ? " " + this.props.userInfo.firstName
-                      : null}
+                    ></i>{" "}
+                    User
                   </span>
                 </OverlayTrigger>
               </li>
@@ -108,6 +114,7 @@ export default connect(
   (state) => ({
     cartItems: state.cart.cartItems,
     userInfo: state.user.userInfo,
+    token: state.user.token,
   }),
-  {}
+  { userSignOutAction }
 )(Header);

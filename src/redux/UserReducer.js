@@ -23,6 +23,13 @@ export const userReducer = (
         validate: action.payload.validate,
         err: action.payload.err,
       };
+    case TYPE.TYPE_USER_SIGN_OUT:
+      return {
+        ...state,
+        validate: action.payload.validate,
+        token: action.payload.token,
+        userInfo: action.payload.userInfo,
+      };
     default:
       return state;
   }
