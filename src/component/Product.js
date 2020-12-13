@@ -127,7 +127,7 @@ class Product extends Component {
 
 export default connect(
   (state) => ({
-    cartItems: state.carts.cartItems,
+    cartItems: state.cart.cartItems,
   }),
   {
     addToCartAction,

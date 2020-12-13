@@ -1,27 +1,70 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { userSignInAction, userGetInfoAction } from "../../../redux/UserAction";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   render() {
     return (
       <div
         className="d-flex w-100 vh-100 justify-content-center align-items-center"
         style={{ background: "#f7f7f7" }}
+        onSubmit={async (e) => {
+          e.preventDefault();
+
+          await this.props.userSignInAction(
+            this.state.email,
+            this.state.password
+          );
+
+          if (this.props.token) {
+            this.props.userGetInfoAction();
+            window.location = "/";
+          }
+        }}
       >
         <form className="row g-3 m-2" style={{ maxWidth: "700px" }}>
           <div className="col-12 text-center">
             <img src="/img/a512.svg" alt="logo" width="100rem" height="auto" />
           </div>
           <div className="col-12">
-            <label htmlFor="inputEmail4" className="form-label">
+            <label htmlFor="email" className="form-label">
               Email
             </label>
-            <input type="email" className="form-control" id="inputEmail4" />
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
           </div>
           <div className="col-12">
-            <label htmlFor="inputEmail4" className="form-label">
+            <label htmlFor="password" className="form-label">
               Password
             </label>
-            <input type="email" className="form-control" id="inputEmail4" />
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
           </div>
           <div className="col-12">
             <div className="form-check">
@@ -51,3 +94,12 @@ export default class SignIn extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => ({
+    userInfo: state.user.userInfo,
+    token: state.user.token,
+    err: state.user.err,
+  }),
+  { userSignInAction, userGetInfoAction }
+)(SignIn);
