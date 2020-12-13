@@ -1,19 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userSignInAction, userGetInfoAction } from "../../../redux/UserAction";
+import ErrorHandle from "../../ErrorHandle";
 
 class SignIn extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: "",
+      err: "",
     };
   }
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
+    });
+  };
+
+  clearError = () => {
+    this.setState({
+      err: "",
     });
   };
 
@@ -34,12 +42,22 @@ class SignIn extends Component {
             this.props.userGetInfoAction();
             window.location = "/";
           }
+          this.setState({
+            err: this.props.err,
+          });
         }}
       >
         <form className="row g-3 m-2" style={{ maxWidth: "700px" }}>
           <div className="col-12 text-center">
             <img src="/img/a512.svg" alt="logo" width="100rem" height="auto" />
           </div>
+          {this.state.err ? (
+            <ErrorHandle
+              message={this.state.err}
+              clearError={this.clearError}
+            />
+          ) : null}
+
           <div className="col-12">
             <label htmlFor="email" className="form-label">
               Email

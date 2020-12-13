@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./component/page/Home";
 import SignIn from "./component/page/auth/Sign-in";
 import SignUp from "./component/page/auth/Sign-up";
-// import { connect } from "react-redux";
-// import { userTokenIsValidateAction } from "./redux/UserAction";
+import { connect } from "react-redux";
+import { userGetInfoAction } from "./redux/UserAction";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.userGetInfoAction();
+  }
   render() {
     return (
       <Router>
@@ -20,12 +23,11 @@ class App extends React.Component {
   }
 }
 
-export default App;
-
-// export default connect(
-//   (state) => ({
-//     userInfo: state.user.userInfo,
-//     err: state.user.err,
-//   }),
-//   {}
-// )(App);
+export default connect(
+  (state) => ({
+    userInfo: state.user.userInfo,
+    validate: state.user.validate,
+    err: state.user.err,
+  }),
+  { userGetInfoAction }
+)(App);
