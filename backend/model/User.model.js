@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema({
   },
   zip: {
     type: Number,
+    default: "00000",
   },
 });
 

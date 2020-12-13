@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { userSignInAction } from "../../../redux/UserAction";
+import { userSignInAction, userGetInfoAction } from "../../../redux/UserAction";
 
 class SignIn extends Component {
   constructor() {
     super();
     this.state = {
-      email: undefined,
-      password: undefined,
+      email: "",
+      password: "",
     };
   }
 
@@ -22,11 +22,18 @@ class SignIn extends Component {
       <div
         className="d-flex w-100 vh-100 justify-content-center align-items-center"
         style={{ background: "#f7f7f7" }}
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
 
-          this.props.userSignInAction(this.state.email, this.state.password);
-          if (!this.props.userInfo) window.location = "/";
+          await this.props.userSignInAction(
+            this.state.email,
+            this.state.password
+          );
+
+          if (this.props.token) {
+            this.props.userGetInfoAction();
+            window.location = "/";
+          }
         }}
       >
         <form className="row g-3 m-2" style={{ maxWidth: "700px" }}>
@@ -90,9 +97,9 @@ class SignIn extends Component {
 
 export default connect(
   (state) => ({
-    user: state.user.userInfo,
+    userInfo: state.user.userInfo,
     token: state.user.token,
     err: state.user.err,
   }),
-  { userSignInAction }
+  { userSignInAction, userGetInfoAction }
 )(SignIn);

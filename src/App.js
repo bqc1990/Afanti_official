@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./component/page/Home";
 import SignIn from "./component/page/auth/Sign-in";
 import SignUp from "./component/page/auth/Sign-up";
-import { connect } from "react-redux";
-import { userTokenIsValidateAction } from "./redux/UserAction";
+// import { connect } from "react-redux";
+// import { userTokenIsValidateAction } from "./redux/UserAction";
 
 class App extends React.Component {
   render() {
@@ -20,13 +20,12 @@ class App extends React.Component {
   }
 }
 
-export default connect(
-  (state) => ({
-    userInfo: state.user.userInfo,
-    tokenIsValidate: state.user.tokenIsValidate,
-    err: state.user.err,
-  }),
-  {
-    userTokenIsValidateAction,
-  }
-)(App);
+export default App;
+
+// export default connect(
+//   (state) => ({
+//     userInfo: state.user.userInfo,
+//     err: state.user.err,
+//   }),
+//   {}
+// )(App);

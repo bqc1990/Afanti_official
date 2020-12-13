@@ -66,6 +66,9 @@ class Header extends Component {
 }
 
 export default connect(
-  (state) => ({ cartItems: state.cart.cartItems }),
+  (state) => ({
+    cartItems: state.cart.cartItems,
+    userInfo: state.user.userInfo,
+  }),
   {}
 )(Header);
