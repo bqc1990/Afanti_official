@@ -5,7 +5,7 @@ import Carts from "../Carts";
 
 class Header extends Component {
   render() {
-    const popover = (
+    const popover_cart = (
       <Popover id="popover-basic">
         <Popover.Title as="h3">
           {this.props.cartItems.length === 0
@@ -17,6 +17,30 @@ class Header extends Component {
           <a class="btn btn-success btn-block" href="/checkout">
             Continue
           </a>
+        </Popover.Content>
+      </Popover>
+    );
+    const popover_user = (
+      <Popover id="popover-basic">
+        <Popover.Title as="h3"></Popover.Title>
+        <Popover.Content>
+          {this.props.userInfo ? (
+            <div>
+              <a class="dropdown-item" href="/account">
+                Account
+              </a>
+              <hr class="dropdown-divider" />
+              <a className="dropdown-item text-danger" href="/">
+                Log out
+              </a>
+            </div>
+          ) : (
+            <div>
+              <a class="dropdown-item text-success" href="/sign-in">
+                Sign in
+              </a>
+            </div>
+          )}
         </Popover.Content>
       </Popover>
     );
@@ -36,21 +60,36 @@ class Header extends Component {
           <div>
             <ul className="nav">
               <li className="nav-item">
-                <a className="nav-link text-dark " href="/">
-                  <i className="far fa-user-circle fa-lg"></i>
-                </a>
+                <OverlayTrigger
+                  trigger="click"
+                  placement="bottom"
+                  overlay={popover_user}
+                >
+                  <span
+                    className="nav-link text-dark"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <i
+                      style={{ cursor: "pointer" }}
+                      className="far fa-user-circle fa-lg"
+                    ></i>
+                    {this.props.userInfo
+                      ? " " + this.props.userInfo.firstName
+                      : null}
+                  </span>
+                </OverlayTrigger>
               </li>
               <li className="nav-item">
                 <OverlayTrigger
                   trigger="click"
                   placement="bottom"
-                  overlay={popover}
+                  overlay={popover_cart}
                 >
-                  <span className="nav-link text-dark">
-                    <i
-                      style={{ cursor: "pointer" }}
-                      className="fas fa-shopping-cart fa-lg"
-                    ></i>
+                  <span
+                    className="nav-link text-dark"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <i className="fas fa-shopping-cart fa-lg"></i>
                     <span className="badge">
                       {this.props.cartItems ? this.props.cartItems.length : 0}
                     </span>
