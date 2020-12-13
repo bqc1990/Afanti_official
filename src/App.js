@@ -5,6 +5,7 @@ import SignIn from "./component/page/auth/Sign-in";
 import SignUp from "./component/page/auth/Sign-up";
 import { connect } from "react-redux";
 import { userGetInfoAction } from "./redux/UserAction";
+import Account from "./component/page/Account";
 
 class App extends React.Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class App extends React.Component {
           <Route path="/" exact component={Home} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
+          <Route path="/account" component={Account} />
         </Switch>
       </Router>
     );
