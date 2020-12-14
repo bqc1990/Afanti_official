@@ -23,4 +23,25 @@ const validateSignIn = (data) => {
   });
 };
 
-module.exports = { validateSignUp, validateSignIn };
+const validateOrder = (data) => {
+  const schema = joi.object({
+    firstName: joi.string().required(),
+    lastName: joi.string().required(),
+    email: joi.string().min(5).required(),
+    address: joi.string().required(),
+    country: joi.string().required(),
+    state: joi.string().required(),
+    zip: joi.number().required(),
+  });
+  return schema.validate({
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    address: data.address,
+    country: data.country,
+    state: data.state,
+    zip: data.zip,
+  });
+};
+
+module.exports = { validateSignUp, validateSignIn, validateOrder };

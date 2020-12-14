@@ -28,3 +28,4 @@ mongoose.connect(
 //setup routers
 app.use("/api/product/", require("./router/Product.router"));
 app.use("/api/user/", require("./router/User.router"));
+app.use("/api/order", require("./router/Order.router"));
