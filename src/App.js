@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { userGetInfoAction } from "./redux/UserAction";
 import Account from "./component/page/Account";
 import Checkout from "./component/page/Checkout";
+import Order from "./component/page/Order";
 
 class App extends React.Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class App extends React.Component {
           <Route path="/sign-up" component={SignUp} />
           <Route path="/account" component={Account} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/order" component={Order} />
         </Switch>
       </Router>
     );
