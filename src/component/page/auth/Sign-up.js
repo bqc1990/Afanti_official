@@ -9,7 +9,14 @@ export default class SignUp extends Component {
       >
         <form className="row g-3 m-2" style={{ maxWidth: "700px" }}>
           <div className="col-12 text-center">
-            <img src="/img/a512.svg" alt="logo" width="100rem" height="auto" />
+            <a href="/">
+              <img
+                src="/img/a512.svg"
+                alt="logo"
+                width="100rem"
+                height="auto"
+              />
+            </a>
           </div>
           <div className="col-12">
             <label htmlFor="email" className="form-label">
@@ -62,7 +69,7 @@ export default class SignUp extends Component {
               State
             </label>
             <div>
-              <select id="state" className="form-select">
+              <select id="state" className="custom-select d-block w-100">
                 <option value="">Choose...</option>
                 <option value="ga">GA</option>
               </select>
@@ -74,19 +81,9 @@ export default class SignUp extends Component {
             </label>
             <input type="text" className="form-control" id="zip" />
           </div>
+
           <div className="col-12">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="gridCheck"
-              />
-              <label className="form-check-label" htmlFor="gridCheck">
-                Remeber me
-              </label>
-            </div>
-          </div>
-          <div className="col-12">
+            <label></label>
             <button type="submit" className="btn btn-dark btn-block">
               Sign up
             </button>

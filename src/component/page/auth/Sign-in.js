@@ -49,7 +49,14 @@ class SignIn extends Component {
       >
         <form className="row g-3 m-2" style={{ maxWidth: "700px" }}>
           <div className="col-12 text-center">
-            <img src="/img/a512.svg" alt="logo" width="100rem" height="auto" />
+            <a href="/">
+              <img
+                src="/img/a512.svg"
+                alt="logo"
+                width="100rem"
+                height="auto"
+              />
+            </a>
           </div>
           {this.state.err ? (
             <ErrorHandle
@@ -104,7 +111,7 @@ class SignIn extends Component {
 
           <div className="col-12 text-center">
             <p>
-              New to here <a href="/sign-up">Sign up</a>
+              New to here? <a href="/sign-up">Sign up</a>
             </p>
           </div>
         </form>

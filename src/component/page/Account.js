@@ -15,16 +15,20 @@ class Account extends Component {
               <Tab.Container defaultActiveKey="first">
                 <Row className="vh-100">
                   <Col sm={3}>
-                    <Nav variant="pills" className="flex-column text-center">
+                    <Nav variant="pills" className="flex-column w-50">
                       <span>
                         <img src="/img/account.png" alt="account" width="50" />
                       </span>
                       <hr class="dropdown-divider" />
                       <Nav.Item>
-                        <Nav.Link eventKey="first">Account</Nav.Link>
+                        <Nav.Link eventKey="first">
+                          <i class="fas fa-address-card"></i> info
+                        </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="second">Order</Nav.Link>
+                        <Nav.Link eventKey="second">
+                          <i className="fas fa-store-alt"></i> order
+                        </Nav.Link>
                       </Nav.Item>
                     </Nav>
                   </Col>
@@ -94,11 +98,7 @@ class Account extends Component {
                 </Row>
               </Tab.Container>
             </>
-          ) : (
-            <div className="text-center">
-              ERROR 401! You have no access to this page
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
     );
