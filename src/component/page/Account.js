@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Tab, Row, Col, Nav, Form } from "react-bootstrap";
+import { Tab, Row, Col, Nav, Form, Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import Header from "../layout/Header";
 import { userGetInfoAction } from "../../redux/UserAction";
 import { getOrderAction } from "../../redux/OrderAction";
 
 class Account extends Component {
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.userGetInfoAction();
     this.props.getOrderAction();
   }
   render() {
@@ -45,7 +46,11 @@ class Account extends Component {
                               <Form.Label>Email</Form.Label>
                               <Form.Control
                                 type="email"
-                                placeholder={this.props.userInfo.email}
+                                placeholder={
+                                  this.props.userInfo
+                                    ? this.props.userInfo.email
+                                    : ""
+                                }
                                 disabled
                               />
                             </Form.Group>
@@ -96,11 +101,32 @@ class Account extends Component {
                       </Tab.Pane>
                       <Tab.Pane eventKey="second" className="text-center">
                         {this.props.associatedOrder ? (
-                          <div>
-                            associatedOrder: {this.props.associatedOrder._id}
-                          </div>
+                          <Table striped bordered hover>
+                            <thead>
+                              <tr>
+                                <th>Order#</th>
+                                <th>Name</th>
+                                <th>Purchase</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {this.props.associatedOrder.map((order) => (
+                                <tr>
+                                  <td>{order.oid}</td>
+                                  <td>
+                                    {order.firstName} {order.lastName}
+                                  </td>
+                                  <td>
+                                    {order.cartItems.map((item) => (
+                                      <li className="nav-link">{item.title}</li>
+                                    ))}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
                         ) : (
-                          <div>No Order history</div>
+                          <div>No order history</div>
                         )}
                       </Tab.Pane>
                     </Tab.Content>

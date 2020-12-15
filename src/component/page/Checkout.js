@@ -12,11 +12,6 @@ class Checkout extends Component {
       email: "bqc1990@hotmail.com",
       firstName: "Qichang",
       lastName: "Bao",
-      address: "2980 Ashlyn Pointe Dr",
-      address2: "",
-      country: "usa",
-      state: "ga",
-      zip: 30340,
     };
   }
   handleChange = (e) => {
@@ -30,16 +25,11 @@ class Checkout extends Component {
     await this.props.createOrderAction(
       this.state.email,
       this.state.firstName,
-      this.state.lastName,
-      this.state.address,
-      this.state.address2,
-      this.state.country,
-      this.state.state,
-      this.state.zip
+      this.state.lastName
     );
 
     if (this.props.orderInfo) {
-      alert("your number id is " + this.props.orderInfo._id);
+      alert("your number id is " + this.props.orderInfo.oid);
     }
   };
   calTotal = () => {
@@ -125,80 +115,6 @@ class Checkout extends Component {
                   />
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="address">
-                    Address <span className="text-muted">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="address"
-                    placeholder="1234 Main St"
-                    required
-                    value={this.state.address}
-                    onChange={this.handleChange}
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="address2">Address 2</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="address2"
-                    id="address2"
-                    placeholder="Apartment or suite"
-                    value={this.state.address2}
-                    onChange={this.handleChange}
-                  />
-                </div>
-
-                <div className="row">
-                  <div className="col-md-5 mb-3">
-                    <label htmlFor="country">
-                      Country <span className="text-muted">*</span>
-                    </label>
-                    <select
-                      className="custom-select d-block w-100"
-                      id="country"
-                      required
-                    >
-                      <option value="">Choose...</option>
-                      <option value="usa">United States</option>
-                    </select>
-                    <div className="invalid-feedback">
-                      Please select a valid country.
-                    </div>
-                  </div>
-                  <div className="col-md-4 mb-3">
-                    <label htmlFor="state">
-                      State <span className="text-muted">*</span>
-                    </label>
-                    <select
-                      className="custom-select d-block w-100"
-                      id="state"
-                      required
-                    >
-                      <option value="">Choose...</option>
-                      <option value="ca">California</option>
-                      <option value="ga">Georgia</option>
-                    </select>
-                  </div>
-                  <div className="col-md-3 mb-3">
-                    <label htmlFor="zip">
-                      Zip <span className="text-muted">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="zip"
-                      placeholder=""
-                      required
-                      value={this.state.zip}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
                 <hr className="mb-4" />
                 {this.props.cartItems.length === 0 ? null : (
                   <button

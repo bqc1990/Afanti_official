@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
+  oid: {
+    type: Number,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
     minlength: 5,
-    unique: true,
   },
   firstName: {
     type: String,
@@ -15,27 +18,8 @@ const orderSchema = new mongoose.Schema({
     type: String,
     default: "Customer",
   },
-  address: {
-    type: String,
-    default: " 1234 Main st",
-  },
-  address2: {
-    type: String,
-  },
-  country: {
-    type: String,
-  },
-  city: {
-    type: String,
-    default: "",
-  },
-  state: {
-    type: String,
-    default: "",
-  },
-  zip: {
-    type: Number,
-    default: "30340",
+  cartItems: {
+    type: Array,
   },
 });
 
