@@ -3,8 +3,12 @@ import { Tab, Row, Col, Nav, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import Header from "../layout/Header";
 import { userGetInfoAction } from "../../redux/UserAction";
+import { getOrderAction } from "../../redux/OrderAction";
 
 class Account extends Component {
+  componentDidMount() {
+    this.props.getOrderAction();
+  }
   render() {
     return (
       <div>
@@ -91,7 +95,13 @@ class Account extends Component {
                         </Form>
                       </Tab.Pane>
                       <Tab.Pane eventKey="second" className="text-center">
-                        No order history
+                        {this.props.associatedOrder ? (
+                          <div>
+                            associatedOrder: {this.props.associatedOrder._id}
+                          </div>
+                        ) : (
+                          <div>No Order history</div>
+                        )}
                       </Tab.Pane>
                     </Tab.Content>
                   </Col>
@@ -108,6 +118,7 @@ class Account extends Component {
 export default connect(
   (state) => ({
     userInfo: state.user.userInfo,
+    associatedOrder: state.order.associatedOrder,
   }),
-  { userGetInfoAction }
+  { userGetInfoAction, getOrderAction }
 )(Account);
