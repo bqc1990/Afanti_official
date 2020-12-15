@@ -10,3 +10,6 @@ export const TYPE_USER_SIGN_UP = "user_sign_up";
 export const TYPE_USER_GET_INFO = "user_get_info";
 export const TYPE_USER_TOKEN_IS_VALIDATE = "user_token_is_validate";
 export const TYPE_USER_SIGN_OUT = "user_sign_out";
+
+export const TYPE_CREATE_ORDER = "create_order";
+export const TYPE_GET_ORDER = "get_order";

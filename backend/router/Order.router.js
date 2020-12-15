@@ -16,11 +16,24 @@ router.post("/create", async (req, res) => {
       address2: req.body.address2,
       country: req.body.country,
       state: req.body.state,
+      city: req.body.city,
       zip: req.body.zip,
     });
 
     const order_saved = await order_create.save();
     res.json(order_saved);
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+});
+
+router.get("/get", async (req, res) => {
+  try {
+    const email = req.query.email.trim();
+
+    let order = await Order.findOne({ email });
+
+    res.json(order);
   } catch (err) {
     return res.status(500).json({ msg: err.message });
   }
