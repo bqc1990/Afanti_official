@@ -4,14 +4,16 @@ import { connect } from "react-redux";
 import Cart from "../Cart";
 import Header from "../layout/Header";
 import { createOrderAction } from "../../redux/OrderAction";
+import { removeALlFromCartAction } from "../../redux/CartAction";
+import Order from "./Order";
 
 class Checkout extends Component {
   constructor() {
     super();
     this.state = {
-      email: "bqc1990@hotmail.com",
-      firstName: "Qichang",
-      lastName: "Bao",
+      email: "",
+      firstName: "",
+      lastName: "",
     };
   }
   handleChange = (e) => {
@@ -30,6 +32,8 @@ class Checkout extends Component {
 
     if (this.props.orderInfo) {
       alert("your number id is " + this.props.orderInfo.oid);
+      this.props.removeALlFromCartAction();
+      window.location = "/order";
     }
   };
   calTotal = () => {
@@ -40,7 +44,7 @@ class Checkout extends Component {
   };
   render() {
     return (
-      <div className="">
+      <div>
         <Header />
         <div className="container">
           <div className="py-3 text-center">
@@ -79,7 +83,7 @@ class Checkout extends Component {
                       type="text"
                       className="form-control"
                       id="firstName"
-                      placeholder=""
+                      name="firstName"
                       value={this.state.firstName}
                       required
                       onChange={this.handleChange}
@@ -93,7 +97,7 @@ class Checkout extends Component {
                       type="text"
                       className="form-control"
                       id="lastName"
-                      placeholder=""
+                      name="lastName"
                       value={this.state.lastName}
                       required
                       onChange={this.handleChange}
@@ -109,6 +113,7 @@ class Checkout extends Component {
                     type="email"
                     className="form-control"
                     id="email"
+                    name="email"
                     placeholder="you@example.com"
                     value={this.state.email}
                     onChange={this.handleChange}
@@ -140,5 +145,6 @@ export default connect(
   }),
   {
     createOrderAction,
+    removeALlFromCartAction,
   }
 )(Checkout);

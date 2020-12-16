@@ -4,7 +4,8 @@ class Order extends Component {
   render() {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
-        Thank you for your order! your order number is {this.props.orderInfo}
+        Thank you for your order!
+        {this.props.orderInfo ? this.props.orderInfo.oid : null}
       </div>
     );
   }
@@ -12,6 +13,7 @@ class Order extends Component {
 
 export default connect(
   (state) => ({
+    products: state.products.filteredProducts,
     orderInfo: state.order.orderInfo,
   }),
   {}

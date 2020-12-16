@@ -8,7 +8,7 @@ class Product extends Component {
     super();
     this.state = {
       show: false,
-      sizeSelectedForModal: "S",
+      sizeSelectedForModal: "",
     };
   }
   handleClose = () => {
@@ -83,7 +83,6 @@ class Product extends Component {
                     className="form-check form-check-inline"
                     onChange={this.handleSizeChange}
                   >
-                    {/* TOTO: adding selected size to the cart items */}
                     {this.props.product.sizes.map((size) => (
                       <>
                         {size}
@@ -93,6 +92,7 @@ class Product extends Component {
                           name="size"
                           value={size}
                           style={{ margin: "0.3rem" }}
+                          checked={size === this.state.sizeSelectedForModal}
                         />
                       </>
                     ))}
@@ -112,7 +112,15 @@ class Product extends Component {
             <Button
               variant="primary"
               onClick={(e) => {
-                this.props.addToCartAction(this.props.product);
+                if (this.state.sizeSelectedForModal === "") {
+                  alert("Please selet your size");
+                  return;
+                }
+                const item = {
+                  ...this.props.product,
+                  size: this.state.sizeSelectedForModal,
+                };
+                this.props.addToCartAction(item);
                 this.handleClose();
               }}
             >

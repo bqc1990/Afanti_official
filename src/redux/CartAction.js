@@ -35,3 +35,13 @@ export const removeFromCartAction = (product) => (dispatch, getState) => {
   });
   window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
+
+export const removeALlFromCartAction = () => (dispatch) => {
+  dispatch({
+    type: TYPE.TYPE_REMOVE_FROM_CART,
+    payload: {
+      items: [],
+    },
+  });
+  window.localStorage.setItem("cartItems", []);
+};

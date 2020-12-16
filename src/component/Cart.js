@@ -8,12 +8,14 @@ class Cart extends Component {
       <div className="d-flex justify-content-between my-1 mx-1">
         <img
           src={this.props.item.image}
-          width="40"
-          height="60"
+          width="60"
+          height="80"
           alt={this.props.item.title}
         />
         <div className="m-1">
-          <strong>some title</strong>
+          <strong>
+            {this.props.item.title}({this.props.item.size})
+          </strong>
           <div className="d-flex justify-content-around align-items-center">
             <span>
               {this.props.item.count} x ${this.props.item.price}

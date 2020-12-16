@@ -8,7 +8,8 @@ import { getOrderAction } from "../../redux/OrderAction";
 class Account extends Component {
   async componentDidMount() {
     await this.props.userGetInfoAction();
-    this.props.getOrderAction();
+    if (this.props.userInfo) this.props.getOrderAction();
+    else window.location = "/sign-in";
   }
   render() {
     return (
