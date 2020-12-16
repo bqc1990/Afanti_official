@@ -12,6 +12,8 @@ export const createOrderAction = (email, firstName, lastName) => async (
     cartItems: getState().cart.cartItems,
   });
 
+  console.log(res.data);
+
   dispatch({
     type: TYPE.TYPE_CREATE_ORDER,
     payload: res.data,
