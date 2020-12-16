@@ -5,7 +5,6 @@ import Cart from "../Cart";
 import Header from "../layout/Header";
 import { createOrderAction } from "../../redux/OrderAction";
 import { removeALlFromCartAction } from "../../redux/CartAction";
-import Order from "./Order";
 
 class Checkout extends Component {
   constructor() {
