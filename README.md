@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+# Getting Started with Afanti, a MERN stack application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+in other words, decent mobile-friendly shopping website for clothes, powered by react and redux
+
+### Home
+![Home](https://github.com/bqc1990/Afanti_official/blob/master/demo/afanti-desktop.png?raw=true|width=50)
+
+### Sign in
+![sign-in](https://github.com/bqc1990/Afanti_official/blob/master/demo/sign-in.png?raw=true|width=50)
+### Sign up
+![Home](https://github.com/bqc1990/Afanti_official/blob/master/demo/sign-up.png?raw=true|width=50)
+### Checkout
+![Home](https://github.com/bqc1990/Afanti_official/blob/master/demo/checkout.png?raw=true|width=50)
+### Account
+![Home](https://github.com/bqc1990/Afanti_official/blob/master/demo/user%20info.png?raw=true|width=50)
+### add to cart
+![Home](https://github.com/bqc1990/Afanti_official/blob/master/demo/product%20modal.png?raw=true|width=50)
+### check associated orders made by that user
+![Home](https://github.com/bqc1990/Afanti_official/blob/master/demo/associated%20orders.png?raw=true|width=50)
+### cart popover in header
+![Home](https://github.com/bqc1990/Afanti_official/blob/master/demo/cart%20popover.png?raw=true|width=50)
+
 
 
 ### `npm start`
